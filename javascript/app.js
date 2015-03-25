@@ -1,14 +1,15 @@
 var grid = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
+			["tl", "tm", "tr"],
+    		["ml", "mm", "mr"],
+    		["bl", "bc", "br"],
 ]
 
 var game = {
 	player: "X",
-
-	playerMove: function(row, col) {
-		grid[row][col] = game.player;
+	row:'',
+	col:'',
+	playerMove: function() {
+		grid[game.row][game.col] = game.player;
 		game.checkWin()
 		if (game.player === "X") {
 			game.player = "O";
@@ -17,15 +18,11 @@ var game = {
 		}
 	},
 
-	getPieceAt: function(row, col) {
-		console.log(grid[row][col]);
-	},
-
 	resetBoard: function() {
 		grid = [
-				[null, null, null],
-    			[null, null, null],
-    			[null, null, null],
+				["tl", "tm", "tr"],
+    			["ml", "mm", "mr"],
+    			["bl", "bc", "br"],
     			]
 	},
 
@@ -49,6 +46,27 @@ var game = {
 		}
 	}
 }
+
+window.onload = function() {
+
+	$(".gameCell").click(function() {
+		var $location = $(this).attr("id");
+		var arrLoc = $location.split("-");
+		// var $location = $(this).attr("id").split("-"); //gets id of clicked item and splits 
+		// game.row = parseInt($location[0]); 
+		// game.col = parseInt($location[1]);
+		game.row = parseInt(arrLoc[0]); 
+		game.col = parseInt(arrLoc[1]);
+		console.log(game.row, game.col);
+		document.getElementById($location).innerHTML = game.player;
+		game.playerMove();
+	})
+
+}
+
+
+
+
 
 
 // var player = 1;
