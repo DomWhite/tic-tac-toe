@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>TIC-TAC-TOE</title>
+		<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="stylesheets/reset.css">
 		<link rel="stylesheet" href="stylesheets/style.css">
 		<script src="javascript/underscore.js"></script>
@@ -11,57 +12,33 @@
 	<body>
 		<div class="container">
 			<div class="topArea">
-				<div class="title">Tic-Tac-Toe</div>
-				<p>Player O</p>
+				<p class="title">Tic-Tac-Toe</p>
 			</div>
 			<div class="playArea">
-			<div id="grid">
-
-					<div class ="gameCell" id="0-0">___</div><!--
-				 --><div class ="gameCell" id="0-1">___</div><!--
-				 --><div class ="gameCell" id="0-2">___</div><!--
-				 --><div class ="gameCell" id="1-0">___</div><!--
-				 --><div class ="gameCell" id="1-1">___</div><!--
-				 --><div class ="gameCell" id="1-2">___</div><!--
-				 --><div class ="gameCell" id="2-0">___</div><!--
-				 --><div class ="gameCell" id="2-1">___</div><!--
-				 --><div class ="gameCell" id="2-2">___</div><!--
-				-->
+				<div id="grid">
+					<div class ="gameCell" id="0-0">_</div><!--
+					--><div class ="gameCell" id="0-1">_</div><!--
+					--><div class ="gameCell" id="0-2">_</div><!--
+					--><div class ="gameCell" id="1-0">_</div><!--
+					--><div class ="gameCell" id="1-1">_</div><!--
+					--><div class ="gameCell" id="1-2">_</div><!--
+					--><div class ="gameCell" id="2-0">_</div><!--
+					--><div class ="gameCell" id="2-1">_</div><!--
+					--><div class ="gameCell" id="2-2">_</div><!--
+					-->
+				</div>
+				<div id="scores">
+					<p class="headX">Player X</p><p class="headO">Player O</p>
+					<p id="scoreX">_</p>
+					<p id="scoreO">_</p>
+				</div>
+<!-- 				<div class="lowArea"> -->
+					<p class="lowArea">Previous High Score</p>
+<!-- 				</div> -->
+				<div class="footer">
+					<button id="resetBtn">RESET</button>
+				</div>
 			</div>
-			<table id="scores">
-				<tr>
-					<td id="scoreX">Player X</td>
-					<td id="scoreO">Player O</td>
-				</tr>
-			</table>
-			</div>
-			<div class="lowArea">
-				<p>player X</p>
-			</div>
-			<div class="footer">
-				<p>footer</p>
-			</div>
-		</div>
-		<script src="javascript/app.js"></script>
-	</body>
-</html>
-
-
-
-
-
-
-
-
-
-<!-- 	<div id="playArea">
-		<input type="button" id="btn1" onclick="clickBtn('btn1')">
-		<input type="button" id="btn2" onclick="clickBtn('btn2')">
-		<input type="button" id="btn3" onclick="clickBtn('btn3')">
-		<input type="button" id="btn4" onclick="clickBtn('btn4')">
-		<input type="button" id="btn5" onclick="clickBtn('btn5')">
-		<input type="button" id="btn6" onclick="clickBtn('btn6')">
-		<input type="button" id="btn7" onclick="clickBtn('btn7')">
-		<input type="button" id="btn8" onclick="clickBtn('btn8')">
-		<input type="button" id="btn9" onclick="clickBtn('btn9')">
-</div> -->
+			<script src="javascript/app.js"></script>
+		</body>
+	</html>
