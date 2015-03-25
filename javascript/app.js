@@ -2,7 +2,7 @@ var grid = [
 			["tl", "tm", "tr"],
     		["ml", "mm", "mr"],
     		["bl", "bc", "br"],
-]
+];
 
 var game = {
 	player: "X",
@@ -16,7 +16,7 @@ var game = {
 	playerMove: function() {
 		if (game.moveCount < 10) {
 			grid[game.row][game.col] = game.player;
-			game.checkWin()
+			game.checkWin();
 			if (game.player === "X") {
 				game.player = "O";
 			} else if (game.player === "O") {
@@ -29,6 +29,9 @@ var game = {
 	},
 
 	checkWin: function() {
+
+		// debugger;
+
 		if (grid[0][0] === grid[0][1] && grid[0][1] === grid[0][2]) {			//Row 1
 			game.addAndClear();
 		} else if (grid[1][0] === grid[1][1] && grid[1][1] === grid[1][2]) {	//Row 2
@@ -49,16 +52,17 @@ var game = {
 	},
 
 	addScore: function() {
-			if (game.player = "X") {
+			if (game.player === "X") {
 				game.counterX += 1;
 				document.getElementById("scoreX").innerHTML = game.counterX;
-			} else if (game.player = "O") {
+			} else if (game.player === "O") {
 				game.counterO += 1;
 				document.getElementById("scoreO").innerHTML = game.counterO;
 			}
 	},
 
 	addAndClear: function() {
+		// debugger;
 			game.addScore();
 			setTimeout(function() {
 				reset.resetBoard();
@@ -72,7 +76,7 @@ var reset = {
 		game.row = '';
 		game.col = '';
 		game.counterX = 0;
-		game.counterY = 0;
+		game.counterO = 0;
 		game.moveCount = 0;
 
 
@@ -87,28 +91,28 @@ var reset = {
 	},
 
 	resetScores: function() {
-		$("#scoreX").html("_")
-		$("#scoreO").html("_")
+		$("#scoreX").html("_");
+		$("#scoreO").html("_");
 	},
 
 
-}
+};
 
 
 var redRound = {
 
-}
+};
 
 window.onload = function() {
 
 	$(".gameCell").click(function() {
-		var $location = $(this).attr("id");
-		var arrLoc = $location.split("-");
-		game.row = parseInt(arrLoc[0]); 
-		game.col = parseInt(arrLoc[1]);
+		var $location = $(this).attr("id");						//take a string of the id of the clicked element
+		var arrLoc = $location.split("-");						//split the string into an array
+		game.row = parseInt(arrLoc[0]); 						//game.row is assigned the value of the value at [0] and parsed as an integer
+		game.col = parseInt(arrLoc[1]);							//game.col is assigned the value of the value at [1] and parsed as an integer
 		console.log(game.row, game.col);
-		document.getElementById($location).innerHTML = game.player;
-		game.moveCount += 1
+		document.getElementById($location).innerHTML = game.player; //the current players token is placed in the clicked element
+		game.moveCount += 1;
 		game.playerMove();
 	})
 
