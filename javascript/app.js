@@ -4,6 +4,12 @@ var grid = [
     ["bl", "bc", "br"],
 ];
 
+var gridRed = [
+	["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+];
+
 var game = {
     player: "X",
     row: '',
@@ -12,11 +18,19 @@ var game = {
     counterO: 0,
     moveCount: 0,
     win: false,
+    redemptionRound: false,
 
     playerMove: function() {
 
-            grid[game.row][game.col] = game.player;			//place X/O in grid
-    	    game.checkWin();
+            grid[game.row][game.col] = game.player;			//place X/O in grid array
+            gridRed[game.row][game.col] = game.player;
+
+            if (game.redemptionRound === false) {
+    	    	game.checkWin();
+    	    } else {
+    	    	game.checkWinRed();
+	    	}
+
     	    game.checkDraw();
 
 	            if (game.player === "X") {								//change player token and colour
@@ -35,6 +49,7 @@ var game = {
         if (grid[0][0] === grid[0][1] && grid[0][1] === grid[0][2]) { //Row 1
             game.addAndClear();
             game.win = true;
+            game.redemptionRound = true;
         } else if (grid[1][0] === grid[1][1] && grid[1][1] === grid[1][2]) { //Row 2
             game.addAndClear();
             game.win = true;
@@ -61,6 +76,38 @@ var game = {
         }
     },
 
+        checkWinRed: function() {
+
+        if (gridRed[0][0] === gridRed[0][1] && gridRed[0][1] === gridRed[0][2]) { //Row 1
+            game.addAndClear();
+            game.win = true;
+            redemptionRound = false;
+        } else if (gridRed[1][0] === gridRed[1][1] && gridRed[1][1] === gridRed[1][2]) { //Row 2
+            game.addAndClear();
+            game.win = true;
+        } else if (gridRed[2][0] === gridRed[2][1] && gridRed[2][1] === gridRed[2][2]) { //Row 3
+            game.addAndClear();
+            game.win = true;
+        } else if (gridRed[0][0] === gridRed[1][0] && gridRed[1][0] === gridRed[2][0]) { //Col 1
+            game.addAndClear();
+            game.win = true;
+        } else if (gridRed[0][1] === gridRed[1][1] && gridRed[1][1] === gridRed[2][1]) { //Col 2
+            game.addAndClear();
+            game.win = true;
+        } else if (gridRed[0][2] === gridRed[1][2] && gridRed[1][2] === gridRed[2][2]) { //Col 3
+            game.addAndClear();
+            game.win = true;
+        } else if (gridRed[0][0] === gridRed[1][1] && gridRed[1][1] === gridRed[2][2]) { //Diag TL to BR
+            game.addAndClear();
+            game.win = true;
+        } else if (gridRed[2][0] === gridRed[1][1] && gridRed[1][1] === gridRed[0][2]) { //Diag TR to BL
+            game.addAndClear();
+            game.win = true;
+        } else {
+        	game.win = false;
+        }
+    },
+
     checkDraw: function() {
     	if (game.moveCount === 9 && game.win === false) {
     		document.getElementById("result").innerHTML = "DRAW!!!";
@@ -70,6 +117,10 @@ var game = {
                 document.getElementById("result").innerHTML = "";
             }, 3000);
     	}
+    },
+
+    playRedeption: function() {
+    	
     },
 
     addScore: function() {					//adds score to tally/counter and displays winner 
@@ -100,6 +151,11 @@ var game = {
             reset.resetBoard();
             reset.resetAll();
         }, 2000);
+            if (game.redemptionRound === false) {
+            	redRound.flipBoardRed();
+            } else if (game.redemptionRound === true) {
+            	redRound.flipBoardNorm();
+            }
     },
 }
 
@@ -117,8 +173,15 @@ var reset = {
             ["ml", "mm", "mr"],
             ["bl", "bc", "br"],
         ];
+        gridRed = [
+        	["", "", ""],
+    		["", "", ""],
+    		["", "", ""],
+        ]
         $(".gameCell").html("_");
         $(".gameCell").addClass("clickable");
+        $(".gameCellRed").html("_");
+        $(".gameCellRed").addClass("clickable");
     },
 
     resetCounters: function() {
@@ -130,13 +193,34 @@ var reset = {
         $("#scoreX").html("_");
         $("#scoreO").html("_");
     },
-
-
 };
 
 
 var redRound = {
+	squares: document.getElementById('gridRed').getElementsByTagName('rect'),
+	randomRGB: function() {
+		return Math.floor(Math.random() * (225 - 0));
+	},
+	rave: function () {
+	setInterval(function(){
+		for (var i = 0; i < redRound.squares.length; i++) {
+			var fillColor = 'rgb(' + redRound.randomRGB() + ',' + redRound.randomRGB() + ',' + redRound.randomRGB() + ')';
+			redRound.squares[i].style.backgroundColor = fillColor;
+		}
+		document.getElementsByTagName('rect')[0].style.backgroundColor = 'rgb(' + redRound.randomRGB() + ',' + redRound.randomRGB() + ',' + redRound.randomRGB() + ')';
+	}, 10);
+	},
 
+	flipBoardRed: function() {
+		document.getElementById("redemption").style.display = "block";
+		document.getElementById("grid").style.display = "none";
+		redRound.rave();
+	},
+
+	flipBoardNorm: function() {
+		document.getElementById("grid").style.display = "block";
+		document.getElementById("redemption").style.display = "none";
+	},
 };
 
 window.onload = function() {
@@ -154,6 +238,19 @@ window.onload = function() {
         $(this).removeClass("clickable");
     })
 
+     $("#gridRed").on("click", ".clickable", function() {
+
+        var $locationRed = $(this).attr("id"); //take a string of the id of the clicked element
+        var arrLocRed = $locationRed.split("-"); //split the string into an array
+        game.row = parseInt(arrLocRed[0]); //game.row is assigned the value of the value at [0] and parsed as an integer
+        game.col = parseInt(arrLocRed[1]); //game.col is assigned the value of the value at [1] and parsed as an integer
+        document.getElementById($locationRed).innerHTML = game.player; //the current players token is placed in the clicked element
+        game.moveCount += 1;
+        game.playerMove();
+        game.addHighScore();
+        $(this).removeClass("clickable");
+    })
+
     $("#resetBtn").click(function() {
         reset.resetAll();
         reset.resetBoard();
@@ -161,9 +258,10 @@ window.onload = function() {
         reset.resetCounters();
     })
 
-    document.getElementById("highScore").innerHTML = localStorage.tttHighScore
-
     if (localStorage.getItem("tttHighScore") === undefined) {
         localStorage.setItem("tttHighScore", 0);
     }
+
+    document.getElementById("highScore").innerHTML = localStorage.tttHighScore
+
 }

@@ -14,6 +14,7 @@ html, body {
 /*
 DIV FORMATTING *************************/
 
+
 .container {
 	position: relative; 
 	z-index: 1;
@@ -185,6 +186,34 @@ Scoring Area ***************************************/
 
 /************************************************/
 
+/*
+Redemption ******************************************/
+#redemption {
+	display: none;
+}
+
+#gridRed {
+	background-color: rgba(120,145,107,1.0);
+	margin: auto;
+	padding: 40px 0;
+	display: block;
+	width: 60%;
+	height: 50%;
+	text-align: center;
+	border: 10px solid #cb884d;
+	border-radius: 30px
+}
+
+.gameCellRed {
+	margin: 0;
+	padding: 0;
+	font-size: 70px;
+	display: inline-block;
+	margin: auto;
+	max-width: 200px;
+	width: 32.5%;
+	background-color: rgba(120,145,107,1.0);
+}
 
 
 /*
@@ -222,9 +251,29 @@ Button ******************************************/
 	text-align:center;
 	text-shadow:0px 0px 0px #528ecc;
 }#resetBtn:hover {
+	-webkit-animation-name: shake;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+
 	background-color:#bddcfa;
 }#resetBtn:active {
 	position:relative;
 	top:1px;
 }
 /************************************************/
+
+@-webkit-keyframes shake {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
