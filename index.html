@@ -16,23 +16,26 @@
 			</div>
 			<div class="playArea">
 				<div id="grid">
-					<div class ="gameCell" id="0-0">_</div><!--
-					--><div class ="gameCell" id="0-1">_</div><!--
-					--><div class ="gameCell" id="0-2">_</div><!--
-					--><div class ="gameCell" id="1-0">_</div><!--
-					--><div class ="gameCell" id="1-1">_</div><!--
-					--><div class ="gameCell" id="1-2">_</div><!--
-					--><div class ="gameCell" id="2-0">_</div><!--
-					--><div class ="gameCell" id="2-1">_</div><!--
-					--><div class ="gameCell" id="2-2">_</div><!--
+					<div class ="gameCell clickable" id="0-0">_</div><!--
+					--><div class ="gameCell clickable" id="0-1">_</div><!--
+					--><div class ="gameCell clickable" id="0-2">_</div><!--
+					--><div class ="gameCell clickable" id="1-0">_</div><!--
+					--><div class ="gameCell clickable" id="1-1">_</div><!--
+					--><div class ="gameCell clickable" id="1-2">_</div><!--
+					--><div class ="gameCell clickable" id="2-0">_</div><!--
+					--><div class ="gameCell clickable" id="2-1">_</div><!--
+					--><div class ="gameCell clickable" id="2-2">_</div><!--
 					-->
 				</div>
 				<div id="scores">
-					<p class="headX">Player X</p><p class="headO">Player O</p>
+					<p id="headX">Player X</p><p id="headO">Player O</p>
 					<p id="scoreX">_</p>
 					<p id="scoreO">_</p>
+					<p id="result"></p>
 				</div>
-					<p class="lowArea">Previous High Score</p>
+					<div class="lowArea">Previous High Score
+					<p id="highScore">_</p>
+					</div>
 				<div class="footer">
 					<button id="resetBtn">RESET</button>
 				</div>

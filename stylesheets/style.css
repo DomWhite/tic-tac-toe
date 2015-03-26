@@ -127,11 +127,15 @@ Individual Cells*********************************/
 
 /*
 Scoring Area ***************************************/
-.headX, .headO {
+#headX, #headO {
 	display: inline-block;
 	width: 49%;
 	margin: 0;
 	text-align: center;
+}
+
+#headX {
+	color: blue;
 }
 
 
@@ -149,13 +153,14 @@ Scoring Area ***************************************/
 	display: block;
 	margin: auto;
 	width: 50%;
-	background-color: grey;
+	background-color: #BDBDB7;
 	vertical-align: top;
 	font-size: 2em;
 }
 
 
 .lowArea {
+	font-size: 1.5em;
 	text-align: center;
 	display: block;
 	width: 50%;
@@ -164,6 +169,14 @@ Scoring Area ***************************************/
 	background-color: orange;
 	border-bottom-right-radius: 60px;
   	border-bottom-left-radius: 60px;
+}
+
+.highScore {
+	padding-top: 2%
+}
+
+#result {
+	text-align: center;
 }
 
 
