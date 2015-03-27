@@ -59,14 +59,6 @@ html, body {
 	width: 100%;
 }
 
-#grid:hover {
-	-webkit-animation-name: shake;
-	-webkit-animation-duration: 2.8s;
-	-webkit-transform-origin:50% 50%;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-}
-/************************************************/
 
 
 /* GAME AREA ***************************************/
@@ -86,7 +78,7 @@ html, body {
 	background-color: rgba(120,145,107,1.0);
 }
 
-/* INDIVIDUAL CELLS *********************************/
+/* INDIVIDUAL CELLS BORDERING *********************************/
 [id = '0-0'] {
 	border-right: 6px solid white;
 	border-bottom: 6px solid white;
@@ -126,7 +118,6 @@ html, body {
 [id = '2-2'] {
 	background-color:
 }
-/************************************************/
 
 /*
 Scoring Area ***************************************/
@@ -183,10 +174,6 @@ Scoring Area ***************************************/
 }
 
 
-/************************************************/
-
-
-
 /* BUTTON ******************************************/
 #resetBtn {
 	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
@@ -231,7 +218,6 @@ Scoring Area ***************************************/
 	position:relative;
 	top:1px;
 }
-/************************************************/
 
 /* ANIMATION ************************************/
 @-webkit-keyframes shake {
@@ -247,5 +233,12 @@ Scoring Area ***************************************/
 	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
 	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
 	}
-	
-/************************************************/
+
+
+#grid:hover {
+	-webkit-animation-name: shake;
+	-webkit-animation-duration: 2.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}

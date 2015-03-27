@@ -1,11 +1,11 @@
-var grid = [
+var grid = [                        //array for game board
     ["tl", "tm", "tr"],
     ["ml", "mm", "mr"],
     ["bl", "bc", "br"],
 ];
 
-var game = {
-    player: "X",
+var game = {                        //object of playing game functions
+    player: "X",                    //starting player
     row: '',
     col: '',
     counterX: 0,
@@ -15,7 +15,7 @@ var game = {
 
     playerMove: function() {
 
-            grid[game.row][game.col] = game.player;			//place X/O in grid
+            grid[game.row][game.col] = game.player;			//place X/O in grid array
     	    game.checkWin();
     	    game.checkDraw();
 
@@ -32,8 +32,8 @@ var game = {
 
     checkWin: function() {
 
-        if (grid[0][0] === grid[0][1] && grid[0][1] === grid[0][2]) { //Row 1
-            game.addAndClear();
+        if (grid[0][0] === grid[0][1] && grid[0][1] === grid[0][2]) { //Row 1               search for winning combo and if found,
+            game.addAndClear();                                                           //adds
             game.win = true;
         } else if (grid[1][0] === grid[1][1] && grid[1][1] === grid[1][2]) { //Row 2
             game.addAndClear();
@@ -61,11 +61,11 @@ var game = {
         }
     },
 
-    checkDraw: function() {
+    checkDraw: function() {                                             //checks for draw and resets board a
     	if (game.moveCount === 9 && game.win === false) {
     		document.getElementById("result").innerHTML = "DRAW!!!";
             setTimeout(function() {
-                reset.resetAll();
+                reset.resetValues();
                 reset.resetBoard();
                 document.getElementById("result").innerHTML = "";
             }, 3000);
@@ -84,7 +84,7 @@ var game = {
         }
     },
 
-    addHighScore: function() {
+    addHighScore: function() {      //for realtime checking/adding of highscore
         if (game.counterX > game.counterO && game.counterX > parseInt(localStorage.tttHighScore)) {
             localStorage.setItem("tttHighScore", game.counterX);
         } else if (game.counterO > game.counterX && game.counterO > parseInt(localStorage.tttHighScore)) {
@@ -93,18 +93,18 @@ var game = {
         document.getElementById("highScore").innerHTML = localStorage.tttHighScore;
     },
 
-    addAndClear: function() {
-        game.addScore();
+    addAndClear: function() {      //runs addScore and after 2 seconds clears board and resets game
+        game.addScore();     
         setTimeout(function() {
             document.getElementById("result").innerHTML = "";
             reset.resetBoard();
-            reset.resetAll();
+            reset.resetValues();
         }, 2000);
     },
 }
 
 var reset = {
-    resetAll: function() {
+    resetValues: function() {
         game.row = '';
         game.col = '';
         game.moveCount = 0;
@@ -117,7 +117,7 @@ var reset = {
             ["ml", "mm", "mr"],
             ["bl", "bc", "br"],
         ];
-        $(".gameCell").html("_");
+        $(".gameCell").html("_");                   //clears cells back to blank and returns clickable class
         $(".gameCell").addClass("clickable");
     },
 
@@ -130,18 +130,11 @@ var reset = {
         $("#scoreX").html("_");
         $("#scoreO").html("_");
     },
-
-
-};
-
-
-var redRound = {
-
 };
 
 window.onload = function() {
 
-    $("#grid").on("click", ".clickable", function() {
+    $("#grid").on("click", ".clickable", function() {   //listens for click
 
         var $location = $(this).attr("id"); //take a string of the id of the clicked element
         var arrLoc = $location.split("-"); //split the string into an array
@@ -151,19 +144,19 @@ window.onload = function() {
         game.moveCount += 1;
         game.playerMove();
         game.addHighScore();
-        $(this).removeClass("clickable");
+        $(this).removeClass("clickable"); 
     })
 
     $("#resetBtn").click(function() {
-        reset.resetAll();
+        reset.resetValues();                       //sets reset button
         reset.resetBoard();
         reset.resetScores();
         reset.resetCounters();
     })
 
-    document.getElementById("highScore").innerHTML = localStorage.tttHighScore
-
-    if (localStorage.getItem("tttHighScore") === null) {
+    if (localStorage.getItem("tttHighScore") === null) {        //sets local storage if none exists
         localStorage.setItem("tttHighScore", 0);
     }
+
+    document.getElementById("highScore").innerHTML = localStorage.tttHighScore
 }
