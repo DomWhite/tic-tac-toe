@@ -163,7 +163,7 @@ window.onload = function() {
 
     document.getElementById("highScore").innerHTML = localStorage.tttHighScore
 
-    if (localStorage.getItem("tttHighScore") === undefined) {
+    if (localStorage.getItem("tttHighScore") === null) {
         localStorage.setItem("tttHighScore", 0);
     }
 }
